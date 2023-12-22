@@ -1,0 +1,58 @@
+Consider the following tweets, where @{author_main}'s tweet is a {other_tweet_type} @{author_other}'s tweet: 
+@{author_main}: `{main_tweet_text}`
+@{author_other}: `{other_tweet_text}`
+
+Note that there are two tweets. We will first be asking you questions about @{author_main}'s tweet. You can use @{author_other}'s tweet for context, but answer the following questions while focusing on @{author_main}'s tweet.
+1. How is @{author_main} feeling in their tweet?
+    - Angry
+    - Anxious
+    - Happy
+    - Sad
+2. Is @{author_main}'s tweet about a political or social issue?
+
+Answer NULL to the subsequent questions if your response to the previous question is "No".
+3. How does @{author_main}'s tweet lean politically?
+4. Is @{author_main}'s tweet expressing anger, frustration, or hostility towards a person or group on the Left?
+5. Is @{author_main}'s tweet expressing anger, frustration, or hostility towards a person or group on the Right?
+
+Next, we will be asking you questions about @{author_other}'s tweet.
+6. How is @{author_other} feeling in their tweet?
+    - Angry
+    - Anxious
+    - Happy
+    - Sad
+7. Is @{author_other}'s tweet about a political or social issue?
+
+Answer NULL to the subsequent questions if your response to the previous question is "No".
+8. How does @{author_other}'s tweet lean politically?
+9. Is @{author_other}'s tweet expressing anger, frustration, or hostility towards a person or group on the Left?
+10. Is @{author_other}'s tweet expressing anger, frustration, or hostility towards a person or group on the Right?
+    
+Respond with a JSON, of the format:
+{{
+    "@{author_main}'s tweet": {{
+        "author_emotions": {{"angry": [VALUE], "anxious": [VALUE], "happy": [VALUE], "sad": [VALUE]}},
+        "is_political": [VALUE],
+        "political_leaning": [VALUE],
+        "animosity_left": [VALUE],
+        "animosity_right": [VALUE]
+    }},
+    "@{author_other}'s tweet": {{
+        "author_emotions": {{"angry": [VALUE], "anxious": [VALUE], "happy": [VALUE], "sad": [VALUE]}},
+        "is_political": [VALUE],
+        "political_leaning": [VALUE],
+        "animosity_left": [VALUE],
+        "animosity_right": [VALUE]
+    }}
+}}
+where [VALUE] is an integer key from: 
+1. {{"Not at all": 0, "Slightly": 1, "Somewhat": 2, "Moderately": 3, "Extremely": 4}}
+2. {{"No": 0, "Yes": 1}}
+3. {{"Far Left": -2, "Left": -1, "Moderate": 0, "Right": 1, "Far Right": 2, NULL}}
+4. {{"No": 0, "Yes": 1, NULL}}
+5. {{"No": 0, "Yes": 1, NULL}}
+6. {{"Not at all": 0, "Slightly": 1, "Somewhat": 2, "Moderately": 3, "Extremely": 4}}
+7. {{"No": 0, "Yes": 1}}
+8. {{"Far Left": -2, "Left": -1, "Moderate": 0, "Right": 1, "Far Right": 2, NULL}}
+9. {{"No": 0, "Yes": 1, NULL}}
+10. {{"No": 0, "Yes": 1, NULL}}

@@ -1,3 +1,5 @@
+Code for the paper [Engagement, User Satisfaction, and the Amplification of Divisive Content on Social Media](https://arxiv.org/abs/2305.16941).
+
 # Installation
 1. To get started, create a Conda environment: `conda create -n twitter python=3.9.11`
 2. Then, activate the Conda environment: `conda activate twitter`
